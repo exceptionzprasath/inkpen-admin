@@ -183,10 +183,10 @@ const ProductsView = ({ products, setProducts, categories }) => {
       {activeSubTab === 'catalog' ? (
         <div className="glass-card">
           {/* Header Controls */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
-            <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: '280px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '24px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: 0, flexWrap: 'wrap' }}>
               {/* Search */}
-              <div className="search-input-wrapper" style={{ flex: 1 }}>
+              <div className="search-input-wrapper" style={{ flex: '1 1 200px', maxWidth: '100%' }}>
                 <Search size={18} className="search-input-icon" />
                 <input 
                   type="text" 
@@ -200,7 +200,7 @@ const ProductsView = ({ products, setProducts, categories }) => {
               {/* Category Filter */}
               <select 
                 className="form-field" 
-                style={{ width: '160px', height: '46px', paddingLeft: '12px' }}
+                style={{ minWidth: '120px', maxWidth: '160px', flex: '0 1 auto', height: '46px', paddingLeft: '12px' }}
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
@@ -211,7 +211,7 @@ const ProductsView = ({ products, setProducts, categories }) => {
               </select>
             </div>
 
-            <button className="btn btn-primary" onClick={openAddModal}>
+            <button className="btn btn-primary" style={{ width: 'auto', flexShrink: 0 }} onClick={openAddModal}>
               <Plus size={18} /> Add New Asset
             </button>
           </div>
@@ -337,7 +337,7 @@ const ProductsView = ({ products, setProducts, categories }) => {
                     </td>
                     <td>{p.dateAdded}</td>
                     <td style={{ textAlign: 'right' }}>
-                      <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                      <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                         <button 
                           className="btn btn-primary btn-sm"
                           style={{ backgroundColor: 'var(--success)' }}

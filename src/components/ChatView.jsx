@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Search, Send, ShieldCheck, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Send, ShieldCheck, User, ArrowLeft } from 'lucide-react';
 
 const ChatView = ({ chats, setChats }) => {
   const [activeThreadId, setActiveThreadId] = useState(chats[0]?.id || null);
   const [search, setSearch] = useState('');
   const [inputText, setInputText] = useState('');
+  const [showConversation, setShowConversation] = useState(false);
 
   const activeThread = chats.find(c => c.id === activeThreadId);
 
@@ -39,6 +40,7 @@ const ChatView = ({ chats, setChats }) => {
 
   const handleSelectThread = (id) => {
     setActiveThreadId(id);
+    setShowConversation(true);
     const updated = chats.map(c => {
       if (c.id === id) {
         return { ...c, unread: false };
@@ -48,10 +50,14 @@ const ChatView = ({ chats, setChats }) => {
     setChats(updated);
   };
 
+  const handleBack = () => {
+    setShowConversation(false);
+  };
+
   return (
     <div className="chat-layout">
       {/* Threads List Pane */}
-      <div className="chat-threads">
+      <div className={`chat-threads ${showConversation ? 'chat-hidden' : ''}`}>
         <div className="chat-threads-header">
           <div className="search-input-wrapper" style={{ maxWidth: '100%' }}>
             <Search size={16} className="search-input-icon" />
@@ -100,11 +106,18 @@ const ChatView = ({ chats, setChats }) => {
 
       {/* Main Conversation Window */}
       {activeThread ? (
-        <div className="chat-window">
+        <div className={`chat-window ${!showConversation ? 'chat-hidden' : ''}`}>
           <div className="chat-window-header">
+            <button 
+              className="chat-back-btn action-btn" 
+              onClick={handleBack}
+              style={{ display: 'none', width: '34px', height: '34px' }}
+            >
+              <ArrowLeft size={18} />
+            </button>
             <img src={activeThread.userAvatar} className="thread-avatar" style={{ width: '40px', height: '40px' }} alt="" />
-            <div>
-              <span style={{ fontWeight: 800, fontSize: '15px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ minWidth: 0 }}>
+              <span style={{ fontWeight: 800, fontSize: '15px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
                 {activeThread.userName}
                 <span className="badge-status info" style={{ fontSize: '9px', padding: '2px 6px', textTransform: 'uppercase' }}>
                   {activeThread.userRole}
@@ -133,13 +146,13 @@ const ChatView = ({ chats, setChats }) => {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
             />
-            <button type="submit" className="btn btn-primary" style={{ width: '48px', height: '48px', padding: 0 }}>
+            <button type="submit" className="btn btn-primary" style={{ width: '48px', height: '48px', padding: 0, flexShrink: 0 }}>
               <Send size={18} />
             </button>
           </form>
         </div>
       ) : (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-primary)', flexDirection: 'column', gap: '10px', color: 'var(--text-secondary)' }}>
+        <div className={`${!showConversation ? 'chat-hidden' : ''}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-primary)', flexDirection: 'column', gap: '10px', color: 'var(--text-secondary)', flex: 1 }}>
           <User size={48} style={{ opacity: 0.3 }} />
           <span>Select a customer thread to begin chat</span>
         </div>

@@ -171,6 +171,12 @@ const App = () => {
 
   return (
     <div className="admin-layout">
+      {/* Mobile sidebar backdrop overlay */}
+      <div 
+        className={`sidebar-backdrop ${mobileMenuOpen ? 'visible' : ''}`} 
+        onClick={() => setMobileMenuOpen(false)} 
+      />
+
       {/* Sidebar Navigation Drawer */}
       <aside className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-logo">

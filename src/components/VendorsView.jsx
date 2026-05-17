@@ -60,7 +60,7 @@ const VendorsView = ({ vendors, setVendors }) => {
       <div className="glass-card">
         {/* Controls */}
         <div style={{ marginBottom: '24px' }}>
-          <div className="search-input-wrapper">
+          <div className="search-input-wrapper" style={{ maxWidth: '100%' }}>
             <Search size={18} className="search-input-icon" />
             <input 
               type="text" 

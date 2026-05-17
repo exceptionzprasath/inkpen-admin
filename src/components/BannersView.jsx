@@ -73,7 +73,7 @@ const BannersView = ({ banners, setBanners }) => {
       </div>
 
       {/* Grid of Banners */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+      <div className="banner-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
         {banners.map(b => (
           <div 
             key={b.id} 

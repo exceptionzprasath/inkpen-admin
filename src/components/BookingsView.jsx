@@ -49,9 +49,9 @@ const BookingsView = ({ bookings, setBookings }) => {
   return (
     <div className="glass-card">
       {/* Header Filters */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: '280px' }}>
-          <div className="search-input-wrapper" style={{ flex: 1 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '24px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: 0, flexWrap: 'wrap' }}>
+          <div className="search-input-wrapper" style={{ flex: '1 1 200px', maxWidth: '100%' }}>
             <Search size={18} className="search-input-icon" />
             <input 
               type="text" 
@@ -64,11 +64,11 @@ const BookingsView = ({ bookings, setBookings }) => {
 
           <select 
             className="form-field" 
-            style={{ width: '200px', height: '46px', paddingLeft: '12px' }}
+            style={{ minWidth: '140px', maxWidth: '200px', flex: '0 1 auto', height: '46px', paddingLeft: '12px' }}
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
-            <option value="all">All Development Stages</option>
+            <option value="all">All Stages</option>
             {stages.map(s => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -158,7 +158,7 @@ const BookingsView = ({ bookings, setBookings }) => {
               {/* Development Pipeline Status Tracker */}
               <div style={{ marginBottom: '24px' }}>
                 <span className="form-label" style={{ marginBottom: '12px' }}>Development Pipeline Status</span>
-                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <div className="booking-pipeline" style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
                   {stages.map((stg, i) => {
                     const isCompleted = stages.indexOf(selectedBooking.status) >= i;
                     const isActive = selectedBooking.status === stg;
@@ -195,7 +195,7 @@ const BookingsView = ({ bookings, setBookings }) => {
               </div>
 
               {/* Specs Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', borderTop: '1px solid var(--border)', paddingTop: '20px', marginBottom: '20px' }}>
+              <div className="form-row" style={{ borderTop: '1px solid var(--border)', paddingTop: '20px', marginBottom: '20px' }}>
                 <div>
                   <span className="form-label" style={{ marginBottom: '2px' }}>Brand Name</span>
                   <span style={{ fontWeight: 800, fontSize: '15px' }}>{selectedBooking.brandName}</span>
@@ -216,7 +216,7 @@ const BookingsView = ({ bookings, setBookings }) => {
               </div>
 
               {/* Requirement Checklists */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+              <div className="form-row" style={{ marginBottom: '20px' }}>
                 {/* Platform requirements */}
                 <div style={{ backgroundColor: 'var(--bg-tertiary)', borderRadius: '12px', padding: '16px' }}>
                   <span className="form-label" style={{ marginBottom: '8px' }}>Platform Needs</span>
@@ -243,7 +243,7 @@ const BookingsView = ({ bookings, setBookings }) => {
               </div>
 
               {/* App theme colors and logo previews */}
-              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+              <div className="form-row" style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
                 {/* Color preview blobs */}
                 <div>
                   <span className="form-label" style={{ marginBottom: '10px' }}>App Colors Specified</span>

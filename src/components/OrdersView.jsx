@@ -45,9 +45,9 @@ const OrdersView = ({ orders, setOrders }) => {
   return (
     <div className="glass-card">
       {/* Header Filters */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '24px', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: '280px' }}>
-          <div className="search-input-wrapper" style={{ flex: 1 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '24px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '12px', flex: 1, minWidth: 0, flexWrap: 'wrap' }}>
+          <div className="search-input-wrapper" style={{ flex: '1 1 200px', maxWidth: '100%' }}>
             <Search size={18} className="search-input-icon" />
             <input 
               type="text" 
@@ -60,7 +60,7 @@ const OrdersView = ({ orders, setOrders }) => {
 
           <select 
             className="form-field" 
-            style={{ width: '160px', height: '46px', paddingLeft: '12px' }}
+            style={{ minWidth: '120px', maxWidth: '160px', flex: '0 1 auto', height: '46px', paddingLeft: '12px' }}
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
